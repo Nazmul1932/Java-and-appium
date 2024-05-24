@@ -21,6 +21,9 @@ public class BasePage extends DriverSetUp {
     public  void clickOnElement(By locator) {
         getElement(locator).click();
     }
+    public String getText(By locator) {
+        return getElement(locator).getText();
+    }
     public void waitAndClick(By locator) {
         waitForElement(locator).click();
     }

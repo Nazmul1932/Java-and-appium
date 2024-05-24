@@ -5,6 +5,7 @@ import GPL.pages.LoginLogoutPage;
 import GPL.utilities.DriverSetUp;
 import GPL.utils.Settings;
 import org.openqa.selenium.By;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class AddHocCCRDCRTest extends DriverSetUp {
@@ -65,8 +66,13 @@ public class AddHocCCRDCRTest extends DriverSetUp {
         addHoCcrDcr.scrollToElement();
         addHoCcrDcr.scrollToElement();
         addHoCcrDcr.waitAndClick(addHoCcrDcr.clickSubmitCCR);
+        CCRAssertions();
         addHoCcrDcr.takeScreenShot("CCR submitted successfully");
         addHoCcrDcr.waitAndClick(addHoCcrDcr.clickOk);
+    }
+    private void CCRAssertions(){
+        String successMessage = addHoCcrDcr.getText(addHoCcrDcr.getSuccessMessageForCCR);
+        Assert.assertEquals(successMessage, "CCR has been submitted successfully");
     }
     private void fillAndSubmitDCR() throws InterruptedException {
         addHoCcrDcr.waitAndClick(addHoCcrDcr.clickSelectDoctorField);
@@ -85,8 +91,13 @@ public class AddHocCCRDCRTest extends DriverSetUp {
         Thread.sleep(1000);
         addHoCcrDcr.scrollToElement();
         addHoCcrDcr.waitAndClick(addHoCcrDcr.submitDCR);
+        DCRAssertions();
         addHoCcrDcr.takeScreenShot("DCR submitted successfully");
         addHoCcrDcr.waitAndClick(addHoCcrDcr.clickOk);
+    }
+    private void DCRAssertions() {
+        String successMessage = addHoCcrDcr.getText(addHoCcrDcr.getSuccessMessageForDCR);
+        Assert.assertEquals(successMessage, "DCR Uploaded Successfully");
     }
     private void navigateBackToMain() throws InterruptedException {
         navigateBack(addHoCcrDcr.clickBackButton1, addHoCcrDcr.clickBackButton2, addHoCcrDcr.clickBackButton3);

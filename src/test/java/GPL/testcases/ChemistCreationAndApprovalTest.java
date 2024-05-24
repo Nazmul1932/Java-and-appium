@@ -4,6 +4,7 @@ import GPL.pages.ChemistCreationAndApprovalPage;
 import GPL.pages.LoginLogoutPage;
 import GPL.utilities.DriverSetUp;
 import GPL.utils.Settings;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.util.Random;
@@ -100,11 +101,16 @@ public class ChemistCreationAndApprovalTest extends DriverSetUp
     }
     private void submitChemistCreationForm() throws InterruptedException {
         chemistCreationAndApprovalPage.waitAndClick(chemistCreationAndApprovalPage.clickSubmitButton);
+        assertionsFromMPO();
         chemistCreationAndApprovalPage.takeScreenShot("Chemist Created Successfully");
         chemistCreationAndApprovalPage.waitAndClick(chemistCreationAndApprovalPage.clickOkButtonOfChemistAddModal);
         chemistCreationAndApprovalPage.waitAndClick(chemistCreationAndApprovalPage.clickBackIcon);
         chemistCreationAndApprovalPage.waitAndClick(chemistCreationAndApprovalPage.clickBackIcon);
         Thread.sleep(1000);
+    }
+    private void assertionsFromMPO(){
+        String successMessage = chemistCreationAndApprovalPage.getText(chemistCreationAndApprovalPage.getSuccessTextOfChemistAdd);
+        Assert.assertEquals(successMessage, "New chemist has been added successfully");
     }
     private void approveChemistRequest() throws InterruptedException {
         chemistCreationAndApprovalPage.waitAndClick(chemistCreationAndApprovalPage.clickApprovalIcon);
@@ -115,11 +121,16 @@ public class ChemistCreationAndApprovalTest extends DriverSetUp
         chemistCreationAndApprovalPage.scrollToElement();
         chemistCreationAndApprovalPage.scrollToElement();
         chemistCreationAndApprovalPage.waitAndClick(chemistCreationAndApprovalPage.clickApprovalButton);
+        assertionsFromAM();
         chemistCreationAndApprovalPage.takeScreenShot("Chemist Approved Successfully");
         chemistCreationAndApprovalPage.waitAndClick(chemistCreationAndApprovalPage.clickOkOfSuccessButton);
         chemistCreationAndApprovalPage.waitAndClick(chemistCreationAndApprovalPage.clickBackButton);
         chemistCreationAndApprovalPage.waitAndClick(chemistCreationAndApprovalPage.getClickBackButton2);
         Thread.sleep(1000);
+    }
+    private void assertionsFromAM(){
+        String approvalMessage = chemistCreationAndApprovalPage.getText(chemistCreationAndApprovalPage.getSuccessTextOfChemistFromAM);
+        Assert.assertEquals(approvalMessage, "Workflow submitted successfully");
     }
     private void logoutUser() throws InterruptedException {
         loginLogoutPage.waitAndClick(loginLogoutPage.clickThreeParallelIcon);

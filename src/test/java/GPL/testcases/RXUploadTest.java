@@ -5,6 +5,7 @@ import GPL.pages.OrderPage;
 import GPL.pages.LoginLogoutPage;
 import GPL.pages.RXUploadPage;
 import GPL.utilities.DriverSetUp;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import GPL.utils.Settings;
 
@@ -41,9 +42,14 @@ public class RXUploadTest extends DriverSetUp
         rxUpload.scrollToElement();
         Thread.sleep(1000);
         rxUpload.waitAndClick(rxUpload.clickUploadRxButton);
+        assertions();
         rxUpload.takeScreenShot("RX document upload Successfully");
         rxUpload.waitAndClick(rxUpload.clickOKButton);
         rxUpload.waitAndClick(rxUpload.clickBackButton);
+    }
+    private void assertions(){
+        String successText = rxUpload.getText(rxUpload.successTextOfRxUpload);
+        Assert.assertEquals(successText, "Rx Uploaded Successfully");
     }
     private void logoutUser() throws InterruptedException {
         loginLogoutPage.waitAndClick(loginLogoutPage.clickThreeParallelIcon);

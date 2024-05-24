@@ -4,6 +4,7 @@ import GPL.pages.BasePage;
 import GPL.pages.OrderPage;
 import GPL.pages.LoginLogoutPage;
 import GPL.utilities.DriverSetUp;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import GPL.utils.Settings;
 
@@ -50,9 +51,17 @@ public class OrderTest extends DriverSetUp {
     private void submitOrder() throws InterruptedException {
         orderPage.waitAndClick(orderPage.clickCreateOrderButton);
         Thread.sleep(1000);
+        assertions();
         orderPage.takeScreenShot("Order Created Successfully");
         orderPage.waitAndClick(orderPage.clickOkButtonOfOrderConfirmation);
         Thread.sleep(1000);
+    }
+    private void assertions(){
+        String orderText1 = orderPage.getText(orderPage.orderCreatedTextXpath);
+        String orderText2 = orderPage.getText(orderPage.getOrderCreatedTextXpath);
+
+        Assert.assertEquals(orderText1, "Order Created");
+        Assert.assertEquals(orderText2, "Order has been created successfully");
     }
     private void logoutUser() throws InterruptedException {
         loginLogoutPage.waitAndClick(loginLogoutPage.clickThreeParallelIcon);
