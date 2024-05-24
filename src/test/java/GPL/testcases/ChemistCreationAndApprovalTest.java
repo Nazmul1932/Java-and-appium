@@ -57,9 +57,9 @@ public class ChemistCreationAndApprovalTest extends DriverSetUp
         loginLogoutPage.setTextByLocator(loginLogoutPage.passWord, password);
         loginLogoutPage.waitAndClick(loginLogoutPage.loginButton);
         Thread.sleep(1000);
+        loginLogoutPage.waitAndClick(loginLogoutPage.clickMenuPage);
     }
     private void navigateToChemistCreationPage() throws InterruptedException {
-        loginLogoutPage.waitAndClick(loginLogoutPage.clickMenuPage);
         chemistCreationAndApprovalPage.waitAndClick(chemistCreationAndApprovalPage.clickChemistIcon);
         chemistCreationAndApprovalPage.waitAndClick(chemistCreationAndApprovalPage.clickPlusAddNewChemistIcon);
     }
@@ -107,7 +107,6 @@ public class ChemistCreationAndApprovalTest extends DriverSetUp
         Thread.sleep(1000);
     }
     private void approveChemistRequest() throws InterruptedException {
-        loginLogoutPage.waitAndClick(loginLogoutPage.clickMenuPage);
         chemistCreationAndApprovalPage.waitAndClick(chemistCreationAndApprovalPage.clickApprovalIcon);
         Thread.sleep(1000);
         chemistCreationAndApprovalPage.waitAndClick(chemistCreationAndApprovalPage.clickFirstRequestOfChemist);

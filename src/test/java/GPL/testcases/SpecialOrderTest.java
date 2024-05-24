@@ -31,9 +31,9 @@ public class SpecialOrderTest extends DriverSetUp
         loginLogoutPage.setTextByLocator(loginLogoutPage.passWord, password);
         loginLogoutPage.waitAndClick(loginLogoutPage.loginButton);
         Thread.sleep(1000);
+        loginLogoutPage.waitAndClick(loginLogoutPage.clickMenuPage);
     }
     private void createSpecialOrder() throws InterruptedException {
-        loginLogoutPage.waitAndClick(loginLogoutPage.clickMenuPage);
         specialOrderPage.waitAndClick(specialOrderPage.clickRequisitionOrder);
         specialOrderPage.waitAndClick(specialOrderPage.clickSelectDoctorField);
         specialOrderPage.waitAndClick(specialOrderPage.selectDoctor);
@@ -58,7 +58,6 @@ public class SpecialOrderTest extends DriverSetUp
         Thread.sleep(1000);
     }
     private void approvalFromRSM() throws InterruptedException{
-        loginLogoutPage.waitAndClick(loginLogoutPage.clickMenuPage);
         specialOrderPage.waitAndClick(specialOrderPage.clickApprovalIconOfRSM);
         specialOrderPage.waitAndClick(specialOrderPage.clickPendingRequestOfRSM);
         Thread.sleep(1000);
@@ -71,7 +70,6 @@ public class SpecialOrderTest extends DriverSetUp
         specialOrderPage.waitAndClick(specialOrderPage.clickBackIcon2OfRSM);
     }
     private void approvalFromZH() throws InterruptedException{
-        loginLogoutPage.waitAndClick(loginLogoutPage.clickMenuPage);
         specialOrderPage.waitAndClick(specialOrderPage.clickApprovalOFZH);
         specialOrderPage.waitAndClick(specialOrderPage.clickPendingOFZH);
         Thread.sleep(1000);
