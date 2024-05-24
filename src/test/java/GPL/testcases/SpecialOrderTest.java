@@ -47,6 +47,7 @@ public class SpecialOrderTest extends DriverSetUp
         Thread.sleep(2000);
         specialOrderPage.scrollToElement();
         specialOrderPage.waitAndClick(specialOrderPage.clickCreateSpecialOrder);
+        specialOrderPage.takeScreenShot("Special Order create successfully");
         specialOrderPage.waitAndClick(specialOrderPage.clickConfirmOKButton);
         specialOrderPage.waitAndClick(specialOrderPage.clickBackButton);
     }
@@ -61,9 +62,10 @@ public class SpecialOrderTest extends DriverSetUp
         specialOrderPage.waitAndClick(specialOrderPage.clickApprovalIconOfRSM);
         specialOrderPage.waitAndClick(specialOrderPage.clickPendingRequestOfRSM);
         Thread.sleep(1000);
-        specialOrderPage.scrollToElement();
-        specialOrderPage.scrollToElement();
+        scrollToElement();
+        scrollToElement();
         specialOrderPage.waitAndClick(specialOrderPage.clickApprovalButtonOfRSM);
+        specialOrderPage.takeScreenShot("Approval of Special Order from RSM  is successfully");
         specialOrderPage.waitAndClick(specialOrderPage.clickOKButtonOfRSM);
         specialOrderPage.waitAndClick(specialOrderPage.clickBackIcon1OfRSM);
         specialOrderPage.waitAndClick(specialOrderPage.clickBackIcon2OfRSM);
@@ -73,13 +75,16 @@ public class SpecialOrderTest extends DriverSetUp
         specialOrderPage.waitAndClick(specialOrderPage.clickApprovalOFZH);
         specialOrderPage.waitAndClick(specialOrderPage.clickPendingOFZH);
         Thread.sleep(1000);
-        specialOrderPage.scrollToElement();
-        specialOrderPage.scrollToElement();
+        scrollToElement();
+        scrollToElement();
         specialOrderPage.waitAndClick(specialOrderPage.clickApproveButtonOfZH);
-        specialOrderPage.waitAndClick(specialOrderPage.clickApproveButtonOfZH);
+        specialOrderPage.takeScreenShot("Approval of Special Order from ZH  is successfully");
         specialOrderPage.waitAndClick(specialOrderPage.clickOKButtonOfZH);
         specialOrderPage.waitAndClick(specialOrderPage.clickBackIconOFZH);
         specialOrderPage.waitAndClick(specialOrderPage.clickBackButton2OfZH);
+    }
+    private void scrollToElement(){
+        specialOrderPage.scrollToElement();
     }
 
 }
