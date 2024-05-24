@@ -21,7 +21,9 @@ public class DriverSetUp {
     public static void setDriver(AndroidDriver driver) {
         LOCAL_DRIVER.set(driver);
     }
-    public static AndroidDriver getDriver() {return LOCAL_DRIVER.get();}
+    public static AndroidDriver getDriver() {
+        return LOCAL_DRIVER.get();
+    }
     @BeforeSuite
     public void driverSetUp() throws MalformedURLException{
         Map<String, String> env = new HashMap<String, String>(System.getenv());

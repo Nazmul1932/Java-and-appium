@@ -4,25 +4,62 @@ import GPL.pages.AddHocCCRDCRPage;
 import GPL.pages.LoginLogoutPage;
 import GPL.utilities.DriverSetUp;
 import GPL.utils.Settings;
+import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
 public class AddHocCCRDCRTest extends DriverSetUp {
 
-    LoginLogoutPage loginLogoutPage = new LoginLogoutPage();
-    AddHocCCRDCRPage addHoCcrDcr = new AddHocCCRDCRPage();
+    private final LoginLogoutPage loginLogoutPage = new LoginLogoutPage();
+    private final AddHocCCRDCRPage addHoCcrDcr = new AddHocCCRDCRPage();
 
     @Test
     public void testAddHocCCR() throws InterruptedException {
+        performLogin();
+        navigateToMenuPage();
+        startTourAndAllowLocation();
+        navigateToAddHocCCR();
+        selectChemistAndSubmitCCR();
+        navigateBackToMain();
+        performLogout();
+    }
+    @Test
+    public void testAddHocDCR() throws InterruptedException{
+        performLogin();
+        navigateToMenuPage();
+        startTourAndAllowLocation();
+        navigateToAddHocDCR();
+        fillAndSubmitDCR();
+        navigateBackToMainFORDCR();
+        performLogout();
+    }
+    private void performLogin() throws InterruptedException {
         loginLogoutPage.setTextByLocator(loginLogoutPage.userName, Settings.MPO_ID);
         loginLogoutPage.setTextByLocator(loginLogoutPage.passWord, Settings.PASSWORD);
         loginLogoutPage.waitAndClick(loginLogoutPage.loginButton);
         Thread.sleep(1000);
+    }
+    private void performLogout() throws InterruptedException {
+        loginLogoutPage.waitAndClick(loginLogoutPage.clickThreeParallelIcon);
+        Thread.sleep(1000);
+        loginLogoutPage.waitAndClick(loginLogoutPage.clickLogoutButton);
+        Thread.sleep(1000);
+    }
+    private void navigateToMenuPage() {
         loginLogoutPage.waitAndClick(loginLogoutPage.clickMenuPage);
-
+    }
+    private void startTourAndAllowLocation() throws InterruptedException {
         addHoCcrDcr.waitAndClick(addHoCcrDcr.clickStartTour);
         addHoCcrDcr.waitAndClick(addHoCcrDcr.allowLocation);
+    }
+    private void navigateToAddHocCCR() {
         addHoCcrDcr.waitAndClick(addHoCcrDcr.clickCCR);
         addHoCcrDcr.waitAndClick(addHoCcrDcr.clickPlusForAdhocCCR);
+    }
+    private void navigateToAddHocDCR() {
+        addHoCcrDcr.waitAndClick(addHoCcrDcr.clickDCR);
+        addHoCcrDcr.waitAndClick(addHoCcrDcr.clickAddHocDcr);
+    }
+    private void selectChemistAndSubmitCCR() throws InterruptedException {
         addHoCcrDcr.waitAndClick(addHoCcrDcr.clickSelectChemistSearchField);
         addHoCcrDcr.waitAndClick(addHoCcrDcr.clickSelectedChemist);
         addHoCcrDcr.scrollToElement();
@@ -30,28 +67,8 @@ public class AddHocCCRDCRTest extends DriverSetUp {
         addHoCcrDcr.waitAndClick(addHoCcrDcr.clickSubmitCCR);
         addHoCcrDcr.takeScreenShot("CCR submitted successfully");
         addHoCcrDcr.waitAndClick(addHoCcrDcr.clickOk);
-        addHoCcrDcr.waitAndClick(addHoCcrDcr.clickBackButton1);
-        addHoCcrDcr.waitAndClick(addHoCcrDcr.clickBackButton2);
-        addHoCcrDcr.waitAndClick(addHoCcrDcr.clickBackButton3);
-
-        Thread.sleep(1000);
-        loginLogoutPage.waitAndClick(loginLogoutPage.clickThreeParallelIcon);
-        Thread.sleep(1000);
-        loginLogoutPage.waitAndClick(loginLogoutPage.clickLogoutButton);
-        Thread.sleep(1000);
     }
-    @Test
-    public void testAddHocDCR() throws InterruptedException{
-        loginLogoutPage.setTextByLocator(loginLogoutPage.userName, Settings.MPO_ID);
-        loginLogoutPage.setTextByLocator(loginLogoutPage.passWord, Settings.PASSWORD);
-        loginLogoutPage.waitAndClick(loginLogoutPage.loginButton);
-        Thread.sleep(1000);
-        loginLogoutPage.waitAndClick(loginLogoutPage.clickMenuPage);
-
-        addHoCcrDcr.waitAndClick(addHoCcrDcr.clickStartTour);
-        addHoCcrDcr.waitAndClick(addHoCcrDcr.allowLocation);
-        addHoCcrDcr.waitAndClick(addHoCcrDcr.clickDCR);
-        addHoCcrDcr.waitAndClick(addHoCcrDcr.clickAddHocDcr);
+    private void fillAndSubmitDCR() throws InterruptedException {
         addHoCcrDcr.waitAndClick(addHoCcrDcr.clickSelectDoctorField);
         addHoCcrDcr.waitAndClick(addHoCcrDcr.clickSelectedDoctor);
         addHoCcrDcr.waitAndClick(addHoCcrDcr.clickSelectShiftField);
@@ -70,13 +87,18 @@ public class AddHocCCRDCRTest extends DriverSetUp {
         addHoCcrDcr.waitAndClick(addHoCcrDcr.submitDCR);
         addHoCcrDcr.takeScreenShot("DCR submitted successfully");
         addHoCcrDcr.waitAndClick(addHoCcrDcr.clickOk);
-        addHoCcrDcr.waitAndClick(addHoCcrDcr.backBtn1);
-        addHoCcrDcr.waitAndClick(addHoCcrDcr.backBtn2);
-
-        Thread.sleep(1000);
-        loginLogoutPage.waitAndClick(loginLogoutPage.clickThreeParallelIcon);
-        Thread.sleep(1000);
-        loginLogoutPage.waitAndClick(loginLogoutPage.clickLogoutButton);
+    }
+    private void navigateBackToMain() throws InterruptedException {
+        navigateBack(addHoCcrDcr.clickBackButton1, addHoCcrDcr.clickBackButton2, addHoCcrDcr.clickBackButton3);
+    }
+    private void navigateBackToMainFORDCR() throws InterruptedException {
+        navigateBack(addHoCcrDcr.backBtn1, addHoCcrDcr.backBtn2);
+    }
+    private void navigateBack(By... buttons) throws InterruptedException {
+        for (By button : buttons) {
+            addHoCcrDcr.waitAndClick(button);
+        }
         Thread.sleep(1000);
     }
+
 }

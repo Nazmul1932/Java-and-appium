@@ -10,15 +10,22 @@ import GPL.utils.Settings;
 
 public class RXUploadTest extends DriverSetUp
 {
-    LoginLogoutPage loginLogoutPage = new LoginLogoutPage();
-    RXUploadPage rxUpload = new RXUploadPage();
+    private final LoginLogoutPage loginLogoutPage = new LoginLogoutPage();
+    private final RXUploadPage rxUpload = new RXUploadPage();
     @Test
     public void testRxUpload () throws InterruptedException
     {
-        loginLogoutPage.setTextByLocator(loginLogoutPage.userName, Settings.MPO_ID);
-        loginLogoutPage.setTextByLocator(loginLogoutPage.passWord, Settings.PASSWORD);
+        loginAsUser(Settings.MPO_ID, Settings.PASSWORD);
+        uploadRxDocument();
+        logoutUser();
+    }
+    private void loginAsUser(String userId, String password) throws InterruptedException {
+        loginLogoutPage.setTextByLocator(loginLogoutPage.userName, userId);
+        loginLogoutPage.setTextByLocator(loginLogoutPage.passWord, password);
         loginLogoutPage.waitAndClick(loginLogoutPage.loginButton);
-        Thread.sleep(2000);
+        Thread.sleep(1000);
+    }
+    private void uploadRxDocument() throws InterruptedException {
         rxUpload.waitAndClick(rxUpload.rxUploadMenu);
         rxUpload.waitAndClick(rxUpload.clickUploadRXButton);
         Thread.sleep(1000);
@@ -30,15 +37,17 @@ public class RXUploadTest extends DriverSetUp
         rxUpload.waitAndClick(rxUpload.clickCameraIcon);
         Thread.sleep(1000);
         rxUpload.waitAndClick(rxUpload.clickDoneButton);
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         rxUpload.scrollToElement();
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         rxUpload.waitAndClick(rxUpload.clickUploadRxButton);
         rxUpload.takeScreenShot("RX document upload Successfully");
         rxUpload.waitAndClick(rxUpload.clickOKButton);
         rxUpload.waitAndClick(rxUpload.clickBackButton);
+    }
+    private void logoutUser() throws InterruptedException {
         loginLogoutPage.waitAndClick(loginLogoutPage.clickThreeParallelIcon);
         loginLogoutPage.waitAndClick(loginLogoutPage.clickLogoutButton);
-        Thread.sleep(2000);
+        Thread.sleep(1000);
     }
 }
