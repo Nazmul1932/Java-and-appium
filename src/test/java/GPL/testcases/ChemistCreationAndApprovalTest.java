@@ -1,13 +1,10 @@
 package GPL.testcases;
 
-import GPL.CustomOrder;
 import GPL.pages.ChemistCreationAndApprovalPage;
 import GPL.pages.LoginLogoutPage;
 import GPL.utilities.DriverSetUp;
 import GPL.utils.Settings;
 import org.testng.annotations.Test;
-import org.junit.FixMethodOrder;
-import org.junit.runners.MethodSorters;
 
 import java.util.Random;
 

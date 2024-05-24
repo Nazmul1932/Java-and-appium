@@ -7,7 +7,7 @@ import GPL.utilities.DriverSetUp;
 import org.testng.annotations.Test;
 import GPL.utils.Settings;
 
-    public class OrderTest extends DriverSetUp {
+public class OrderTest extends DriverSetUp {
 
         private final LoginLogoutPage loginLogoutPage = new LoginLogoutPage();
         private final OrderPage orderPage = new OrderPage();
